@@ -78,6 +78,8 @@ class DetailPage extends StatelessWidget {
                 Text(
                   restaurant?.description ?? "",
                   style: Theme.of(context).textTheme.bodyMedium,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 16),
                 Text(
