@@ -37,6 +37,15 @@ class HomePage extends StatelessWidget {
       builder: (context, snapshot) {
         final List<Restaurant> restaurants = parseRestaurants(snapshot.data);
 
+        if (restaurants.isEmpty) {
+          return Center(
+            child: Text(
+              "Tidak ada data",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          );
+        }
+
         return ListView.builder(
           itemCount: restaurants.length,
           itemBuilder: (context, index) {
