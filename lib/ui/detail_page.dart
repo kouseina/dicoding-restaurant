@@ -13,79 +13,90 @@ class DetailPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Detail Restaurant'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Hero(
-                tag: restaurant?.pictureId ?? "",
-                child: Image.network(restaurant?.pictureId ?? "")),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          restaurant?.name ?? "",
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.star,
-                            size: 28,
-                          ),
-                          const SizedBox(width: 2),
-                          Text(
-                            (restaurant?.rating ?? 0).toString(),
-                            style: Theme.of(context).textTheme.headlineSmall,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 3),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.location_on,
-                        size: 16,
-                      ),
-                      const SizedBox(width: 2),
-                      Text(
-                        restaurant?.city ?? "",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    restaurant?.description ?? "",
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    "Foods",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: 8),
-                  _buildMenuList(restaurant?.menus?.foods ?? []),
-                  const SizedBox(height: 16),
-                  Text(
-                    "Drinks",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: 8),
-                  _buildMenuList(restaurant?.menus?.drinks ?? []),
-                ],
+      body: restaurant != null
+          ? _buildData(context)
+          : Center(
+              child: Text(
+                "Tidak ada data",
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
-          ],
-        ),
+    );
+  }
+
+  Widget _buildData(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Hero(
+              tag: restaurant?.pictureId ?? "",
+              child: Image.network(restaurant?.pictureId ?? "")),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        restaurant?.name ?? "",
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          size: 28,
+                        ),
+                        const SizedBox(width: 2),
+                        Text(
+                          (restaurant?.rating ?? 0).toString(),
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 3),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.location_on,
+                      size: 16,
+                    ),
+                    const SizedBox(width: 2),
+                    Text(
+                      restaurant?.city ?? "",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  restaurant?.description ?? "",
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  "Foods",
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(height: 8),
+                _buildMenuList(restaurant?.menus?.foods ?? []),
+                const SizedBox(height: 16),
+                Text(
+                  "Drinks",
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(height: 8),
+                _buildMenuList(restaurant?.menus?.drinks ?? []),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
