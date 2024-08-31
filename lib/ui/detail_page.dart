@@ -17,7 +17,7 @@ class DetailPage extends StatelessWidget {
           ? _buildData(context)
           : Center(
               child: Text(
-                "Tidak ada data",
+                "no restaurant data",
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),

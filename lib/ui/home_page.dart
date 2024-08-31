@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
         if (restaurants.isEmpty) {
           return Center(
             child: Text(
-              "Tidak ada data",
+              "no restaurant list",
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           );
